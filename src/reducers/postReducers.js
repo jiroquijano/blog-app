@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 const postReducer = (state, action)=>{
     switch (action.type){
         case 'POPULATE_POSTS':
@@ -7,7 +9,7 @@ const postReducer = (state, action)=>{
                 ...state,
                 {   
                     ...action.post,
-                    id: state.length || 0
+                    id: uuidv4()
                 }
             ]
         case 'REMOVE_POST':
