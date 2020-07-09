@@ -2,6 +2,7 @@ import React, {useContext,useState} from 'react';
 import {Link} from 'react-router-dom';
 import BlogContext from '../context/blog-context';
 import Modal from 'react-modal';
+import moment from 'moment';
 
 const Post = ({post}) =>{
     const {dispatch} = useContext(BlogContext);
@@ -18,6 +19,7 @@ const Post = ({post}) =>{
     return (
         <div>
             <h2>{post.title}</h2>
+            <h4>{moment(post.date).format('MMMM DD, YYYY')}</h4>
             <Link to={`/view/${post.id}`}>View</Link>
             <button onClick={()=>setModalOpen(true)}>Delete</button>
             <Modal 
