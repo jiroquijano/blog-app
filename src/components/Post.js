@@ -17,7 +17,7 @@ const Post = ({post}) =>{
     };
 
     return (
-        <div>
+        <div style={{borderBottom: 'gray 1px solid'}}>
             <h2>{post.title}</h2>
             <h4>{moment(post.date).format('MMMM DD, YYYY')}</h4>
             <Link to={`/view/${post.id}`}>View</Link>

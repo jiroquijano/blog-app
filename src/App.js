@@ -14,9 +14,9 @@ function App() {
   const [posts,dispatch] = useReducer(postReducer, []);
   
   useEffect(()=>{
-    const initial = [{id: 0, title:'jiroooo', content:'sample content', keywords:'keywooooord', date: moment()}]
+    const initial = [{id: '0', title:'jiroooo', content:'sample content', keywords:'keywooooord', date: moment()}]
     localStorage.setItem("posts", JSON.stringify(initial)); //temporary
-    const storedPosts = JSON.parse(localStorage.getItem("posts")) || [{id: 0, title:'jiropost', content: 'sample', keywords:'keyword', date:moment()}];
+    const storedPosts = JSON.parse(localStorage.getItem("posts")) || [{id: '0', title:'jiropost', content: 'sample', keywords:'keyword', date:moment()}];
     dispatch({
       type: 'POPULATE_POSTS',
       posts: storedPosts
