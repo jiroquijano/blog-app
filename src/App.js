@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './styles/App.css';
 import PostsFeedPage from './components/PostsFeedPage';
 import PostViewPage from './components/PostViewPage';
@@ -13,22 +13,28 @@ function App() {
   const [posts,dispatch] = useReducer(postReducer, []);
   
   useEffect(()=>{
-    const initial = [{title:'jiroooo', content:'sample content', keywords:'keywooooord'}];
+    const initial = [{id: 0, title:'jiroooo', content:'sample content', keywords:'keywooooord'}]
     localStorage.setItem("posts", JSON.stringify(initial)); //temporary
-    const storedPosts = JSON.parse(localStorage.getItem("posts")) || [{title:'jiropost', content: 'sample', keywords:'keyword'}];
+    const storedPosts = JSON.parse(localStorage.getItem("posts")) || [{id: 0, title:'jiropost', content: 'sample', keywords:'keyword'}];
     dispatch({
       type: 'POPULATE_POSTS',
       posts: storedPosts
+    });
+    dispatch({
+      type: 'ADD_POST',
+      post: {title:'bonna', content:'conteeeent', keywords:'bonnieee'}
     });
   },[]);
 
   return (
     <BlogContext.Provider value={{posts,dispatch}}>
-      <Header/>
       <BrowserRouter>
-        <Route path='/' exact component={PostsFeedPage}/>
-        <Route path='/add' component={AddPostPage}/>
-        <Route path='/view/:id' test={'hello'} component={PostViewPage}/>
+        <Header/>
+        <Switch>
+          <Route path='/' exact component={PostsFeedPage}/>
+          <Route path='/add' component={AddPostPage}/>
+          <Route path='/view/:id' test={'hello'} component={PostViewPage}/>
+        </Switch>
       </BrowserRouter>
     </BlogContext.Provider>
   );
