@@ -3,7 +3,7 @@ import React from 'react';
 const PostViewPage = (props) => {
     return (
         <div>
-            {`${props.match.params.id} view ${props.test}`}
+            {`viewing post: ${props.match.params.id}`}
         </div>
     );
 }

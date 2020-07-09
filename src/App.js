@@ -6,6 +6,7 @@ import PostViewPage from './components/PostViewPage';
 import Header from './components/Header';
 import BlogContext from './context/blog-context';
 import postReducer from './reducers/postReducers';
+import AddPostPage from './components/AddPostPage';
 
 function App() {
 
@@ -13,16 +14,11 @@ function App() {
   
   useEffect(()=>{
     const initial = [{title:'jiroooo', content:'sample content', keywords:'keywooooord'}];
-    localStorage.setItem("posts", JSON.stringify(initial));
+    localStorage.setItem("posts", JSON.stringify(initial)); //temporary
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [{title:'jiropost', content: 'sample', keywords:'keyword'}];
     dispatch({
       type: 'POPULATE_POSTS',
       posts: storedPosts
-    });
-
-    dispatch({
-      type: 'ADD_POST',
-      post: {title:'bonna', content: 'ganda', keywords:'prehti'}
     });
   },[]);
 
@@ -31,7 +27,7 @@ function App() {
       <Header/>
       <BrowserRouter>
         <Route path='/' exact component={PostsFeedPage}/>
-        
+        <Route path='/add' component={AddPostPage}/>
         <Route path='/view/:id' test={'hello'} component={PostViewPage}/>
       </BrowserRouter>
     </BlogContext.Provider>
