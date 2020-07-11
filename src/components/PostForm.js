@@ -1,12 +1,12 @@
 import React, {useState, useContext} from 'react';
-import BlogContext from '../context/blog-context';
 import {useHistory} from 'react-router-dom';
-import Modal from 'react-modal';
-import 'react-dates/initialize';
+import BlogContext from '../context/blog-context';
 import {SingleDatePicker} from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
-import moment from 'moment';
+import Modal from 'react-modal';
 import ReactQuill from 'react-quill';
+import moment from 'moment';
+import 'react-dates/lib/css/_datepicker.css';
+import 'react-dates/initialize';
 import 'react-quill/dist/quill.snow.css';
 
 const PostForm = ({actionType, post}) => {
@@ -59,7 +59,7 @@ const PostForm = ({actionType, post}) => {
                 onChange={(e)=>setTitle(e.target.value)}
                 type="text"
                 value={title}
-                placeholder="title"
+                placeholder="what's new?"
             />
             <SingleDatePicker
                 date = {date}
@@ -70,13 +70,14 @@ const PostForm = ({actionType, post}) => {
                 numberOfMonths = {1}
                 isOutsideRange = {(day)=>false}
             />
-            <ReactQuill theme="snow" value={content} onChange={setContent} placeholder={"tell me more"}/>
+            <ReactQuill theme="snow" value={content} onChange={setContent} placeholder={"oh, tell me more!"}/>
             <input
                 onChange={(e)=>setKeywords(e.target.value)}
                 type="text"
-                placeholder="keywords"
+                placeholder="which hashtag/s (keywords) should we use?"
                 value={keywords}
             />
+            <br/>
             <button>Submit!</button>
         </form>
         </>

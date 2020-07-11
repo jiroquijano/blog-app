@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import './styles/App.css';
 import PostsFeedPage from './components/PostsFeedPage';
 import PostViewPage from './components/PostViewPage';
 import Header from './components/Header';
@@ -8,6 +7,7 @@ import BlogContext from './context/blog-context';
 import postReducer from './reducers/postReducers';
 import AddPostPage from './components/AddPostPage';
 import EditPostPage from './components/EditPostPage';
+import './styles/App.css';
 
 function App() {
 

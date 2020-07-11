@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 const Header = (props) =>{
     return (
         <div>
-            <h1>Blog Application</h1>
+            <h1>My Blog!</h1>
             <Link to="/">Home</Link>
-            <Link to="/add">New post</Link>
+            <Link to="/add">Create</Link>
         </div>
     );
 }
