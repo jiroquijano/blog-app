@@ -26,7 +26,7 @@ const PostViewPage = (props) => {
                     currentPost ? (
                         <div>
                             <h1>{currentPost.title}</h1>
-                            <h2>{currentPost.content}</h2>
+                            <div dangerouslySetInnerHTML={{__html: currentPost.content}}/>
                             <h4>{moment(currentPost.date).format('MMMM DD, YYYY')}</h4>
                             <Link to={`/edit/${currentPost.id}`}>Edit</Link>
                             <button onClick={()=>setModalOpen(true)}>Delete</button>
