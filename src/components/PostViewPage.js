@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import BlogContext from '../context/blog-context'
 import moment from 'moment';
+import {Link} from 'react-router-dom';
 
 const PostViewPage = (props) => {
     const {posts} = useContext(BlogContext);
@@ -13,7 +14,7 @@ const PostViewPage = (props) => {
                             <h1>{currentPost.title}</h1>
                             <h2>{currentPost.content}</h2>
                             <h4>{moment(currentPost.date).format('MMMM DD, YYYY')}</h4>
-                            <button>Edit</button>
+                            <Link to={`/edit/${currentPost.id}`}>Edit</Link>
                             <button>Remove</button>
                         </div>
                     ) : ''

@@ -8,10 +8,11 @@ import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
 
 const PostForm = ({actionType='ADD_POST', post}) => {
+    const id = post ? post.id: '';
     const [title, setTitle] = useState(post? post.title: '');
     const [content, setContent] = useState(post? post.content:'');
     const [keywords, setKeywords] = useState(post? post.keywords:'');
-    const [date, setDate] = useState(post?post.date:moment());
+    const [date, setDate] = useState(post?moment(post.date):moment());
     const [calendarFocused, setCalendarFocused] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
     const history = useHistory();
@@ -25,6 +26,19 @@ const PostForm = ({actionType='ADD_POST', post}) => {
         if(date) setDate(date);
     }
 
+    const onSubmitHandler = (e)=>{
+        e.preventDefault();
+        if(!title || !content){ 
+            setModalOpen(true)
+        } else {
+            dispatch({
+                type: actionType,
+                post: {id, title,content,keywords,date}
+            });
+            history.push('/');
+        }
+    };
+
     return (
         <>
         <Modal 
@@ -36,18 +50,7 @@ const PostForm = ({actionType='ADD_POST', post}) => {
             <button onClick={()=>setModalOpen(false)}>Okay, sorry</button>
         </Modal>
         <form 
-            onSubmit={(e)=>{
-                e.preventDefault();
-                if(!title || !content){ 
-                    setModalOpen(true)
-                } else {
-                    dispatch({
-                        type: actionType,
-                        post: {title,content,keywords,date}
-                    });
-                    history.push('/');
-                }
-            }}
+            onSubmit={onSubmitHandler}
         >
             <input
                 onChange={(e)=>{

@@ -7,19 +7,18 @@ import Header from './components/Header';
 import BlogContext from './context/blog-context';
 import postReducer from './reducers/postReducers';
 import AddPostPage from './components/AddPostPage';
+import EditPostPage from './components/EditPostPage';
 
 function App() {
 
   const [posts,dispatch] = useReducer(postReducer, []);
   
   useEffect(()=>{
-    // const initial = [];
-    // localStorage.setItem("posts", JSON.stringify(initial)); //clear
-    const storedPosts = JSON.parse(localStorage.getItem("posts") || []);
+    const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     dispatch({
       type: 'POPULATE_POSTS',
       posts: storedPosts
-    });    
+    });  
   },[]);
 
   return (
@@ -29,7 +28,8 @@ function App() {
         <Switch>
           <Route path='/' exact component={PostsFeedPage}/>
           <Route path='/add' component={AddPostPage}/>
-          <Route path='/view/:id' test={'hello'} component={PostViewPage}/>
+          <Route path='/view/:id'component={PostViewPage}/>
+          <Route path='/edit/:id'component={EditPostPage}/>
         </Switch>
       </BrowserRouter>
     </BlogContext.Provider>
