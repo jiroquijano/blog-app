@@ -4,7 +4,7 @@ import PostForm from './PostForm';
 const AddPostPage = () => {
     return (
         <div>
-            <PostForm/>
+            <PostForm actionType={"ADD_POST"}/>
         </div>
     );
 }

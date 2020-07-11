@@ -7,24 +7,19 @@ import Header from './components/Header';
 import BlogContext from './context/blog-context';
 import postReducer from './reducers/postReducers';
 import AddPostPage from './components/AddPostPage';
-import moment from 'moment';
 
 function App() {
 
   const [posts,dispatch] = useReducer(postReducer, []);
   
   useEffect(()=>{
-    const initial = [{id: '0', title:'jiroooo', content:'sample content', keywords:'keywooooord', date: moment()}]
-    localStorage.setItem("posts", JSON.stringify(initial)); //temporary
-    const storedPosts = JSON.parse(localStorage.getItem("posts")) || [{id: '0', title:'jiropost', content: 'sample', keywords:'keyword', date:moment()}];
+    // const initial = [];
+    // localStorage.setItem("posts", JSON.stringify(initial)); //clear
+    const storedPosts = JSON.parse(localStorage.getItem("posts") || []);
     dispatch({
       type: 'POPULATE_POSTS',
       posts: storedPosts
-    });
-    dispatch({
-      type: 'ADD_POST',
-      post: {title:'bonna', content:'conteeeent', keywords:'bonnieee', date:moment()}
-    });
+    });    
   },[]);
 
   return (
