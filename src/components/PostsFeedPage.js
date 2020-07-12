@@ -45,6 +45,7 @@ const PostsFeedPage = () =>{
                 max={posts.length}
             />
             <br/>
+            sort by:
             <select
                 onChange={(e)=>{
                     setSortOption(e.target.value);
@@ -53,7 +54,7 @@ const PostsFeedPage = () =>{
                 <option>date</option>
                 <option>title</option>
             </select>
-
+            <br/>
             {page > 1 && (
                 <button onClick={()=>setPage(page-1)}>
                     Prev
