@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import BlogContext from '../context/blog-context';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
 
 const SearchBar = () =>{
     const [searchQuery, setSearchQuery] = useState('');
@@ -11,13 +13,13 @@ const SearchBar = () =>{
         if(!searchQuery) history.push('/');
     },[searchQuery,history]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
-
     return (
-        <form onSubmit={handleSubmit}>
-            <input
+        <div className="search-bar">
+            <FontAwesomeIcon 
+                className="search-bar__icon"
+                icon="search"
+            />
+            <input className="search-bar__input"
                 onChange={(e)=>{
                     setSearchQuery(e.target.value);
                     searchDispatch({type: 'UPDATE_SEARCH', search: e.target.value});
@@ -25,11 +27,10 @@ const SearchBar = () =>{
                 }}
                 value={searchQuery}
                 type="text"
-                placeholder="search here"
+                placeholder="search posts"
                 name="input"
             />
-            <button>Search!</button>
-        </form>
+        </div>
     )
 }
 

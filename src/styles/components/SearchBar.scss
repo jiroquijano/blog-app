@@ -1,0 +1,16 @@
+.search-bar{
+    text-align: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.search-bar__icon{
+    color: $blue;
+    font-size: 30px;
+    margin: auto 5px;
+}
+
+.search-bar__input{
+    border-radius: 10px;
+    width: 20vw;
+    text-align: center;
+}

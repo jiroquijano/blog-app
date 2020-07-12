@@ -9,7 +9,9 @@ import AddPostPage from './components/AddPostPage';
 import EditPostPage from './components/EditPostPage';
 import SearchResultPage from './components/SearchResultsPage';
 import DashboardPage from './components/DashboardPage';
-import './styles/App.css';
+import './styles/App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container, Row, Col} from 'react-bootstrap';
 
 function App() {
   const [posts,dispatch] = useReducer(postReducer, []);
@@ -24,18 +26,30 @@ function App() {
   },[]);
 
   return (
-    <BlogContext.Provider value={{posts,dispatch, searchString, searchDispatch}}>
-      <BrowserRouter>
-        <Header/>
-        <Switch>
-          <Route path='/' exact component={DashboardPage}/>
-          <Route path='/add' component={AddPostPage}/>
-          <Route path='/view/:id'component={PostViewPage}/>
-          <Route path='/edit/:id'component={EditPostPage}/>
-          <Route path='/search' component={SearchResultPage}/>
-        </Switch>
-      </BrowserRouter>
-    </BlogContext.Provider>
+    
+      <BlogContext.Provider value={{posts,dispatch, searchString, searchDispatch}}>
+        
+        <BrowserRouter>
+          <Container fluid>
+            <Row className="header-row">
+                <Header/>
+            </Row>
+          </Container>
+          <Container>
+            <Row>
+              <Col>
+                <Switch>
+                  <Route path='/' exact component={DashboardPage}/>
+                  <Route path='/add' component={AddPostPage}/>
+                  <Route path='/view/:id'component={PostViewPage}/>
+                  <Route path='/edit/:id'component={EditPostPage}/>
+                  <Route path='/search' component={SearchResultPage}/>
+                </Switch>
+              </Col>
+            </Row>
+          </Container>
+        </BrowserRouter>
+      </BlogContext.Provider>
   );
 }
 

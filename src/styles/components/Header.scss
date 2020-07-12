@@ -1,0 +1,28 @@
+.header-banner{
+    padding: 10px 50px;
+    width: 100%;
+}
+
+.header-banner__link{
+    color: $blue;
+    font-size: 30px;
+    text-align: center;
+}
+
+.header-banner__link--active{
+    font-size: 40px;
+    color: lighten($blue, 10);
+    border-bottom: lighten($blue, 10) solid 5px;
+}
+
+.header-row{
+    background-color: $gray;
+    box-shadow: 0 0 10px 0 gray;
+}
+
+.header-banner__title{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(228, 253, 255);
+    text-align: center;
+    text-decoration: none;
+}

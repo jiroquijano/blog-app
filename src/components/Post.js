@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import BlogContext from '../context/blog-context';
 import Modal from 'react-modal';
 import moment from 'moment';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const Post = ({post}) =>{
     const {dispatch} = useContext(BlogContext);
@@ -19,7 +20,8 @@ const Post = ({post}) =>{
     return (
         <div style={{borderBottom: 'gray 1px solid'}}>
             <h2>{post.title}</h2>
-            <h4>{moment(post.date).format('MMMM DD, YYYY')}</h4>
+            <FontAwesomeIcon icon="cofee"/>
+            <h6>{moment(post.date).format('MMMM DD, YYYY')}</h6>
             <Link to={`/view/${post.id}`}>View</Link>
             <button onClick={()=>setModalOpen(true)}>Delete</button>
             <Modal 
