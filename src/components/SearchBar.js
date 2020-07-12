@@ -28,6 +28,7 @@ const SearchBar = () =>{
                 value={searchQuery}
                 type="text"
                 placeholder="search posts"
+                title="separate different keywords with a comma (,)"
                 name="input"
             />
         </div>

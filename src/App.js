@@ -35,7 +35,7 @@ function App() {
                 <Header/>
             </Row>
           </Container>
-          <Container>
+          <Container className="main-content">
             <Row>
               <Col>
                 <Switch>

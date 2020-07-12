@@ -2,3 +2,9 @@
 @import "settings/colors";
 @import "components/Header";
 @import "components/SearchBar";
+@import "components/Modal";
+@import "components/Posts";
+
+.main-content{
+    padding: 30px 0px;
+}

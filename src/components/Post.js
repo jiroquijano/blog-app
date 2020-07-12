@@ -1,7 +1,7 @@
 import React, {useContext,useState} from 'react';
 import {Link} from 'react-router-dom';
 import BlogContext from '../context/blog-context';
-import Modal from 'react-modal';
+import {Modal,Button,Card,Container,Row} from 'react-bootstrap';
 import moment from 'moment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
@@ -18,20 +18,40 @@ const Post = ({post}) =>{
     };
 
     return (
-        <div style={{borderBottom: 'gray 1px solid'}}>
-            <h2>{post.title}</h2>
-            <FontAwesomeIcon icon="cofee"/>
-            <h6>{moment(post.date).format('MMMM DD, YYYY')}</h6>
-            <Link to={`/view/${post.id}`}>View</Link>
-            <button onClick={()=>setModalOpen(true)}>Delete</button>
-            <Modal 
-                isOpen={isModalOpen}
-                onRequestClose={()=>setModalOpen(false)}
-                ariaHideApp={false}
+        <div>
+            <Card className="post-item">
+                <Card.Body>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Subtitle className="text-muted">
+                        created on: {moment(post.date).format('MMMM DD, YYYY')}
+                    </Card.Subtitle>
+                </Card.Body>
+                <Container>
+                    <Row>
+                        <Link to={`/view/${post.id}`}>
+                            <FontAwesomeIcon icon="eye"/>
+                        </Link>
+                        <FontAwesomeIcon icon="trash-alt" onClick={()=>setModalOpen(true)}/>
+                    </Row>
+                </Container>
+            </Card>
+
+            <Modal
+                show={isModalOpen}
+                onHide={()=>setModalOpen(false)}
+                backdrop="static"
+                keyboard={false}
             >
-                <h1>Delete post?</h1>
-                <button onClick={()=>setModalOpen(false)}>Cancel</button>
-                <button onClick={handleDelete}>Confirm</button>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete Confirmation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to delete this post?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={()=>setModalOpen(false)}>...maybe not</Button>
+                    <Button variant="primary" onClick={handleDelete}>yes</Button>
+                </Modal.Footer>
             </Modal>
         </div>
     )

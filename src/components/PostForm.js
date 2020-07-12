@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {useHistory} from 'react-router-dom';
 import BlogContext from '../context/blog-context';
 import {SingleDatePicker} from 'react-dates';
-import Modal from 'react-modal';
+import {Modal,Button} from 'react-bootstrap';
 import ReactQuill from 'react-quill';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
@@ -46,14 +46,24 @@ const PostForm = ({actionType, post}) => {
 
     return (
         <>
-        <Modal 
-            isOpen={isModalOpen}
-            ariaHideApp={false}
-            onRequestClose={()=>setModalOpen(false)}
+        <Modal
+            show={isModalOpen}
+            onHide={()=>setModalOpen(false)}
+            backdrop="static"
+            keyboard={false}
         >
-            <h1>Post Title and Post content should not be Empty!</h1>
-            <button onClick={()=>setModalOpen(false)}>Okay, sorry</button>
+            <Modal.Header closeButton>
+                <Modal.Title>You forgot something</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                title or content of the post cannot be empty
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={()=>setModalOpen(false)}>okay, sorry</Button>
+            </Modal.Footer>
+
         </Modal>
+        
         <form onSubmit={onSubmitHandler}>
             <input
                 onChange={(e)=>setTitle(e.target.value)}

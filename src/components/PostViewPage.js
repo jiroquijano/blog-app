@@ -2,7 +2,7 @@ import React, {useContext,useState} from 'react';
 import BlogContext from '../context/blog-context'
 import moment from 'moment';
 import {Link} from 'react-router-dom';
-import Modal from 'react-modal';
+import {Modal,Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom'
 
 const PostViewPage = (props) => {
@@ -30,14 +30,22 @@ const PostViewPage = (props) => {
                             <h4>{moment(currentPost.date).format('MMMM DD, YYYY')}</h4>
                             <Link to={`/edit/${currentPost.id}`}>Edit</Link>
                             <button onClick={()=>setModalOpen(true)}>Delete</button>
-                            <Modal 
-                                isOpen={isModalOpen}
-                                onRequestClose={()=>setModalOpen(false)}
-                                ariaHideApp={false}
+                            <Modal
+                                show={isModalOpen}
+                                onHide={()=>setModalOpen(false)}
+                                backdrop="static"
+                                keyboard={false}
                             >
-                                <h1>Delete post?</h1>
-                                <button onClick={()=>setModalOpen(false)}>Cancel</button>
-                                <button onClick={handleDelete}>Confirm</button>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Delete Confirmation</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    Are you sure you want to delete this post?
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={()=>setModalOpen(false)}>...maybe not</Button>
+                                    <Button variant="primary" onClick={handleDelete}>yes</Button>
+                                </Modal.Footer>
                             </Modal>
                         </div>
                     ) : ''
