@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useHistory} from 'react-router-dom';
+import BlogContext from '../context/blog-context';
 
 const SearchBar = () =>{
     const [searchQuery, setSearchQuery] = useState('');
     const history = useHistory();
+    const {searchDispatch} = useContext(BlogContext);
 
     useEffect(()=>{
         if(!searchQuery) history.push('/');
@@ -18,7 +20,8 @@ const SearchBar = () =>{
             <input
                 onChange={(e)=>{
                     setSearchQuery(e.target.value);
-                    history.push('/search');
+                    searchDispatch({type: 'UPDATE_SEARCH', search: e.target.value});
+                    history.push(`/search`);
                 }}
                 value={searchQuery}
                 type="text"

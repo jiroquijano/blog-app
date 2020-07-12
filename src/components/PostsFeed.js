@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import Post from './Post';
-import BlogContext from '../context/blog-context';
 import paginate from '../selectors/pagination';
 import sortBy from '../selectors/sorting';
 
-const PostsFeedPage = () =>{
-    const {posts} = useContext(BlogContext);
+const PostsFeedPage = ({posts}) =>{
     const [page, setPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(5);
     const [sortOption, setSortOption] = useState('date');
