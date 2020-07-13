@@ -1,0 +1,41 @@
+.post-view-container{
+    height: auto;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.post-view-container__title{
+    background-color: $gray;
+    color:white;
+    padding: 30px;
+}
+
+.post-view-container__date{
+    color: #555555;
+}
+
+.post-view-container__content{
+    background-color: white;
+    border-radius: 10px;
+    height: auto;
+    padding: 30px;
+}
+
+.post-view-container__content *{
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.post-view__footer{
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.post-view-footer__icon{
+    font-size: 30px;
+    margin:10px;
+    color: $gray;
+    cursor: pointer;
+}

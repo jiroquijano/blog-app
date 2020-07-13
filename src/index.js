@@ -10,7 +10,8 @@ import {faSearch,
         faTrashAlt,
         faCog,
         faChevronCircleLeft,
-        faChevronCircleRight
+        faChevronCircleRight,
+        faEdit
       } from '@fortawesome/free-solid-svg-icons';
 import App from './App';
 
@@ -22,7 +23,8 @@ library.add(fab,
             faTrashAlt,
             faCog,
             faChevronCircleRight,
-            faChevronCircleLeft
+            faChevronCircleLeft,
+            faEdit
             );
 
 ReactDOM.render(
