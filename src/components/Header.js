@@ -20,7 +20,7 @@ const Header = (props) =>{
                             to="/"
                             exact
                         >
-                            <FontAwesomeIcon icon="home"/>
+                            <FontAwesomeIcon title="view posts" icon="home"/>
                         </NavLink>
                     </div>
                 </Col>
@@ -30,7 +30,7 @@ const Header = (props) =>{
                             activeClassName="header-banner__link--active"
                             to="/add"
                         >
-                            <FontAwesomeIcon icon="plus-circle"/>
+                            <FontAwesomeIcon title="create new post" icon="plus-circle"/>
                         </NavLink>
                     </div>
                 </Col>

@@ -1,7 +1,7 @@
 import React, {useContext,useState} from 'react';
 import {Link} from 'react-router-dom';
 import BlogContext from '../context/blog-context';
-import {Modal,Button,Card,Container,Row} from 'react-bootstrap';
+import {Modal,Button,Card,Container,Row, Col} from 'react-bootstrap';
 import moment from 'moment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
@@ -21,17 +21,28 @@ const Post = ({post}) =>{
         <div>
             <Card className="post-item">
                 <Card.Body>
-                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Title><em>{post.title}</em></Card.Title>
                     <Card.Subtitle className="text-muted">
                         created on: {moment(post.date).format('MMMM DD, YYYY')}
                     </Card.Subtitle>
                 </Card.Body>
-                <Container>
+                <Container className="post-item__options">
                     <Row>
-                        <Link to={`/view/${post.id}`}>
-                            <FontAwesomeIcon icon="eye"/>
-                        </Link>
-                        <FontAwesomeIcon icon="trash-alt" onClick={()=>setModalOpen(true)}/>
+                        <Col 
+                            md={{span:3, offset: 9}}
+                            lg={{span:2, offset:10}}
+                        >
+                            <Link to={`/view/${post.id}`}>
+                                <FontAwesomeIcon 
+                                    className="post-item__options__item"
+                                    icon="eye"
+                                />
+                            </Link>
+                            <FontAwesomeIcon
+                                className="post-item__options__item"
+                                icon="trash-alt" onClick={()=>setModalOpen(true)}
+                            />
+                        </Col>
                     </Row>
                 </Container>
             </Card>

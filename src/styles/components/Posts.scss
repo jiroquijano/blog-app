@@ -1,3 +1,22 @@
 .post-item{
     margin: 10px 0px;
 }
+
+.post-item__options{
+    background-color: lighten($gray, 10);
+    text-align: center;
+    border-radius: 0 0 5px 0;
+}
+
+.post-item__options__item{
+    align-items: center;
+    color: white;
+    margin: 10px;
+    font-size: 20px;
+    transition: ease-in 100ms;
+    cursor:pointer;
+}
+
+.post-item__options__item:hover{
+    font-size: 30px;
+}
