@@ -8,12 +8,12 @@ const Header = (props) =>{
     return (
         <div className="header-banner">
             <Row>
-                <Col xs={12} s={12} md={3} lg={3}>
+                <Col xs={12} md={3} lg={3}>
                     <div className="header-banner__title">
                         <h1>bl<FontAwesomeIcon icon="plus-circle"/>gs!</h1>
                     </div>
                 </Col>
-                <Col xs s>
+                <Col xs>
                     <div className="header-banner__link">
                         <NavLink 
                             activeClassName="header-banner__link--active"
@@ -24,17 +24,17 @@ const Header = (props) =>{
                         </NavLink>
                     </div>
                 </Col>
-                <Col xs s>
+                <Col xs>
                     <div  className="header-banner__link">
                         <NavLink 
                             activeClassName="header-banner__link--active"
                             to="/add"
                         >
-                            <FontAwesomeIcon title="create new post" icon="plus-circle"/>
+                            <FontAwesomeIcon title="Create a new post" icon="plus-circle"/>
                         </NavLink>
                     </div>
                 </Col>
-                <Col xs s md={4} lg={4}>
+                <Col xs md={4} lg={4}>
                     <SearchBar/>
                 </Col>
             </Row>

@@ -2,7 +2,7 @@ import React, {useContext,useState} from 'react';
 import BlogContext from '../context/blog-context'
 import moment from 'moment';
 import {Link} from 'react-router-dom';
-import {Modal,Button} from 'react-bootstrap';
+import DeleteConfirmationModal from './modals/DeleteConfirmationModal';
 import {useHistory} from 'react-router-dom'
 
 const PostViewPage = (props) => {
@@ -30,23 +30,13 @@ const PostViewPage = (props) => {
                             <h4>{moment(currentPost.date).format('MMMM DD, YYYY')}</h4>
                             <Link to={`/edit/${currentPost.id}`}>Edit</Link>
                             <button onClick={()=>setModalOpen(true)}>Delete</button>
-                            <Modal
-                                show={isModalOpen}
-                                onHide={()=>setModalOpen(false)}
-                                backdrop="static"
-                                keyboard={false}
-                            >
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Delete Confirmation</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    Are you sure you want to delete this post?
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={()=>setModalOpen(false)}>...maybe not</Button>
-                                    <Button variant="primary" onClick={handleDelete}>yes</Button>
-                                </Modal.Footer>
-                            </Modal>
+
+                            <DeleteConfirmationModal
+                                isModalOpen={isModalOpen}
+                                setModalOpen={setModalOpen}
+                                handleDelete={handleDelete}
+                            />
+
                         </div>
                     ) : ''
                 }

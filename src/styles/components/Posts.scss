@@ -2,13 +2,22 @@
     margin: 10px 0px;
 }
 
-.post-item__options{
+.post-item--first{
+    margin: 0;
+    text-align: center;
+}
+
+.post-item__add-button{
+    font-size: 30px;
+}
+
+.post-item__footer{
     background-color: lighten($gray, 10);
     text-align: center;
     border-radius: 0 0 5px 0;
 }
 
-.post-item__options__item{
+.post-item__footer__item{
     align-items: center;
     color: white;
     margin: 10px;
@@ -17,6 +26,6 @@
     cursor:pointer;
 }
 
-.post-item__options__item:hover{
+.post-item__footer__item:hover{
     font-size: 30px;
 }

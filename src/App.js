@@ -28,7 +28,6 @@ function App() {
   return (
     
       <BlogContext.Provider value={{posts,dispatch, searchString, searchDispatch}}>
-        
         <BrowserRouter>
           <Container fluid>
             <Row className="header-row">

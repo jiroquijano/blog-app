@@ -3,7 +3,7 @@ import moment from 'moment';
 const sortBy = (posts, option) => {
     if(option === 'date') {
         posts.sort((a,b)=>{
-           return moment(a.date) - moment(b.date);
+           return moment(b.date) - moment(a.date);
         })
     } else if(option === 'title') {
         posts.sort((a,b)=>{

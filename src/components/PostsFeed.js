@@ -1,26 +1,16 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import Post from './Post';
 import paginate from '../selectors/pagination';
 import sortBy from '../selectors/sorting';
+import PageNavigation from './PageNavigation';
+import {Card, Container} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Modal,Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 const PostsFeedPage = ({posts}) =>{
     const [page, setPage] = useState(1);
-    const [isModalOpen, setModalOpen] = useState(false);
     const [postsPerPage, setPostsPerPage] = useState(3);
     const [sortOption, setSortOption] = useState('date');
-    const totalNumberOfPages = Math.ceil(posts.length/postsPerPage) || page;
-    
-    useEffect(()=>{
-        if(page > totalNumberOfPages) {
-            setPage(totalNumberOfPages)
-        }
-    },[page,totalNumberOfPages]);
-
-    const handlePostPerPageChange = (e) =>{
-        setPostsPerPage(e.target.value);
-    }
 
     const applySelectors = () =>{
         const sortedPosts = sortBy(posts, sortOption);
@@ -29,68 +19,45 @@ const PostsFeedPage = ({posts}) =>{
     }
 
     return (
-        <div>
-            sort by:
-            <select
-                onChange={(e)=>{
-                    setSortOption(e.target.value);
-                }}
-            >
-                <option>date</option>
-                <option>title</option>
-            </select>
-
-            {applySelectors().map((post,index)=>(
-                <Post
-                    key={index}
-                    post={post}
-                />
-            ))}
-
-            {`Viewing page ${page} of ${totalNumberOfPages}     `}
-            <FontAwesomeIcon onClick={()=>setModalOpen(true)} icon="cog"/>
-            
-            <div>
-                {page > 1 && (
-                    <button onClick={()=>setPage(page-1)}>
-                        Prev
-                    </button>
-                )}
-                {page*postsPerPage < posts.length && (
-                    <button onClick={()=>setPage(page+1)}>
-                        Next
-                    </button>
-                )}
-            </div>
-
-            <Modal
-                show={isModalOpen}
-                onHide={()=>setModalOpen(false)}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>Pagination Options</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    posts per page:
-                    <input 
-                        onChange={handlePostPerPageChange}
-                        type="number"
-                        value={postsPerPage}
-                        min={1}
-                        max={posts.length}
-                    />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button 
-                        onClick={()=>setModalOpen(false)}
-                        variant="primary"
-                    >
-                        Done
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+        <div className="posts-feed">
+            {
+                posts.length > 0 ? (
+                    <>
+                        <PageNavigation 
+                            posts={posts}
+                            page={page}
+                            postsPerPage={postsPerPage}
+                            setPage={setPage}
+                            setSortOption={setSortOption}
+                            setPostsPerPage={setPostsPerPage}
+                        />
+                        <div className="posts-feed__items">
+                            {applySelectors().map((post,index)=>(
+                                <Post
+                                    key={index}
+                                    post={post}
+                                />
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <Card className="post-item--first">
+                            <Card.Body>
+                                <Card.Title><em>Compose your first post!</em></Card.Title>
+                                <Card.Subtitle className="text-muted">
+                                    click add button below
+                                </Card.Subtitle>
+                            </Card.Body>
+                                <Container className="post-item__footer">
+                                    <Link className="post-item__add-button" to="/add">
+                                        <FontAwesomeIcon title="Create a new post" icon="plus-circle"/>
+                                    </Link>
+                                </Container>
+                        </Card>
+                    </>
+                )
+            }
 
         </div>
     );
