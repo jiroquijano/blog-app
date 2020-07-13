@@ -1,5 +1,19 @@
-.page-navigation__info{
+.page-navigation-container{
     text-align: center;
+    align-items: center;
+    vertical-align: auto;
+}
+
+.page-navigation-container__info{
+    text-align: center;
+    align-items: center;
+    vertical-align: auto;
+}
+
+.page-navigation-container__configure{
+    font-size: 30px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .page-navigation__buttons{

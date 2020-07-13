@@ -18,17 +18,25 @@ const PageNavigation = ({posts, setSortOption, postsPerPage, setPostsPerPage, pa
 
     return (
         <div className="page-navigation">
-            <Container className="page-navigation__info">
+            <Container className="page-navigation-container">
                 <Row>
                     <Col>
-                        {`Viewing page ${page} of ${totalNumberOfPages}`}
-                        <FontAwesomeIcon onClick={()=>setModalOpen(true)} icon="cog"/>
+                        <span className="page-navigation-container__info">
+                            {`Viewing page ${page} of ${totalNumberOfPages}`}
+                        </span>
+                        <FontAwesomeIcon className="page-navigation-container__configure"
+                            onClick={()=>setModalOpen(true)} icon="cog"
+                        />
                     </Col>
                 </Row>
             </Container>
-            <Container className="page-navigation__buttons">
+            <Container>
                 <Row>
-                    <Col lg={{span:1, offset:0}}>
+                    <Col 
+                        lg={{span:1, offset:0}}
+                        md={{span:1, offset:0}}
+                        xs={{span:1,offset:0}}
+                    >
                         {page > 1 && (
                             <div className="page-navigation__buttons">
                                 <FontAwesomeIcon 
@@ -38,7 +46,11 @@ const PageNavigation = ({posts, setSortOption, postsPerPage, setPostsPerPage, pa
                             </div>
                         )}
                     </Col>
-                    <Col lg={{span:1, offset:10}}>
+                    <Col 
+                        lg={{span:1, offset:10}}
+                        md={{span:1, offset:10}}
+                        xs={{span:1,offset:9}}
+                    >
                         {page*postsPerPage < posts.length && (
                             <div className="page-navigation__buttons">
                                 <FontAwesomeIcon

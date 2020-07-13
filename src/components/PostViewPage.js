@@ -3,7 +3,8 @@ import BlogContext from '../context/blog-context'
 import moment from 'moment';
 import {Link} from 'react-router-dom';
 import DeleteConfirmationModal from './modals/DeleteConfirmationModal';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
+import {Jumbotron, Container} from 'react-bootstrap';
 
 const PostViewPage = (props) => {
     const {posts,dispatch} = useContext(BlogContext);
@@ -24,20 +25,26 @@ const PostViewPage = (props) => {
             <>
                 {
                     currentPost ? (
-                        <div>
-                            <h1>{currentPost.title}</h1>
-                            <div dangerouslySetInnerHTML={{__html: currentPost.content}}/>
-                            <h4>{moment(currentPost.date).format('MMMM DD, YYYY')}</h4>
-                            <Link to={`/edit/${currentPost.id}`}>Edit</Link>
-                            <button onClick={()=>setModalOpen(true)}>Delete</button>
-
+                        <>
+                            <Jumbotron>
+                                <Container className="post-view-container">
+                                    <h1 className="post-view-container__title">{currentPost.title}</h1>
+                                    <h6 className="post-view-container__date">
+                                        posted on: {moment(currentPost.date).format('MMMM DD, YYYY')}
+                                    </h6>
+                                    <div className="post-view-container__content" dangerouslySetInnerHTML={
+                                        {__html: currentPost.content}
+                                    }/>
+                                </Container>
+                                    <Link to={`/edit/${currentPost.id}`}>Edit</Link>
+                                    <button onClick={()=>setModalOpen(true)}>Delete</button>
+                            </Jumbotron>
                             <DeleteConfirmationModal
                                 isModalOpen={isModalOpen}
                                 setModalOpen={setModalOpen}
                                 handleDelete={handleDelete}
                             />
-
-                        </div>
+                        </>
                     ) : ''
                 }
             </>
