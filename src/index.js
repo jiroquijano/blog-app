@@ -11,7 +11,8 @@ import {faSearch,
         faCog,
         faChevronCircleLeft,
         faChevronCircleRight,
-        faEdit
+        faEdit,
+        faCheckCircle
       } from '@fortawesome/free-solid-svg-icons';
 import App from './App';
 
@@ -24,7 +25,8 @@ library.add(fab,
             faCog,
             faChevronCircleRight,
             faChevronCircleLeft,
-            faEdit
+            faEdit,
+            faCheckCircle
             );
 
 ReactDOM.render(
