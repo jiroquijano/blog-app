@@ -44,7 +44,7 @@ const PostsFeedPage = ({posts}) =>{
                     <>
                         <Card className="post-item--first">
                             <Card.Body>
-                                <Card.Title><em>Compose your first post!</em></Card.Title>
+                                <Card.Title><em>Create a post!</em></Card.Title>
                                 <Card.Subtitle className="text-muted">
                                     click add button below
                                 </Card.Subtitle>
